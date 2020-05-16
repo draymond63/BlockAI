@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+import LoginPage from './views/LoginPage';
+import CreatePage from './views/CreatePage';
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
-
-  useEffect(() => {
-    fetch('/times') // Can't be route for some reason
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setCurrentTime(data.time);
-    });
-  }, []);
-
+  
   return (
-    <div className="App">
+    <Router className="App">
       <header className="App-header">
-
-        ... no changes in this part ...
-
-        <p>The current time is {currentTime}.</p>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route path="/create" component={CreatePage} />
+        </Switch>
       </header>
-    </div>
+    </Router>
   );
 }
 
