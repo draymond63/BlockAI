@@ -1,12 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-<<<<<<< HEAD
-export default function LoginPage() {
-  return (
-    <div>
-      <Link to="/">Go Back</Link>
-=======
+  
 // import CTX from '../components/Store'
 // const store = React.useContext(CTX);
 import Board from '../components/Board'
@@ -28,7 +22,6 @@ export default function LoginPage() {
         <Tile id='card-3' className='tile'>3</Tile>
         <Tile id='card-4' className='tile'>4</Tile>
       </Board>
->>>>>>> Added initial mongo implementation
     </div>
   );
 }

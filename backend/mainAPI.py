@@ -18,3 +18,11 @@ def get_account(username, password):
     is_verified = username == real_u and password == real_p
 
     return {'verified': is_verified}
+<<<<<<< HEAD
+=======
+
+@app.route('/mongo')
+def ping_mongo():
+    db.insert({'name': 'Danny'})
+    return {'hi': "yup"}
+>>>>>>> Added initial mongo implementation
