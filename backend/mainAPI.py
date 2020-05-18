@@ -21,7 +21,7 @@ def compile():
     layer_data, training_data = restructure(json)
     model = shapeModel(layer_data)
 
-    # test_acc = train(model, training_data)
+    test_acc = train(model, training_data)
     test_acc = 5
 
     return {'accuracy': test_acc}
