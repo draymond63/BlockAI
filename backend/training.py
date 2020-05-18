@@ -20,12 +20,17 @@ def restructure(json):
     }
 
 def shapeModel(data):
+    keys = sorted(data)
     model = tf.keras.models.Sequential([])
     model.add(tf.keras.layers.Flatten())
 
-    for key in data:
+    for key in keys[:-1]:
         nodes = data[key]['nodes']
         model.add(tf.keras.layers.Dense(nodes))
+
+    # Last layer needs softmax
+    nodes = data[keys[-1]]['nodes']
+    model.add(tf.keras.layers.Dense(nodes, activation='softmax'))
 
     return model
 

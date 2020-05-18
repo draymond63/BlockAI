@@ -9,4 +9,4 @@
 # VScode
 *.vscode
 
-*__pycache__
+/backend/__pycache__
