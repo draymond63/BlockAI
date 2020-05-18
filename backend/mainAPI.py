@@ -1,38 +1,74 @@
 import time
-from flask import Flask
+import os
+from flask import Flask, request
 from flask_pymongo import PyMongo
 
-app = Flask(__name__)
-<<<<<<< HEAD
-app.config["MONGO_URI"] = "mongodb+srv://TheRauser:Jagwar63@blockai-qst0z.mongodb.net/test?retryWrites=true&w=majority"
-=======
-app.config["MONGO_URI"] = "mongodb+srv://TheRauser:<_____________________PASSPORD___________________>@blockai-qst0z.mongodb.net/test?retryWrites=true&w=majority"
->>>>>>> 598f3e1b7bab5b1f39b013bde9d5bfc2dfc9fee5
-mongo = PyMongo(app)
-db = mongo.db.BlockAI
+import tensorflow as tf
 
-@app.route('/times')
+app = Flask(__name__)
+
+@app.route('/test')
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/login/<string:username>/<string:password>', methods=['GET'])
-def get_account(username, password):
-    real_u = 'Daniel'
-    real_p = 'H'
-    is_verified = username == real_u and password == real_p
+@app.route('/train', methods=['POST'])
+def compile():
+    json = request.files
+    print(json)
+    layer_data, training_data = restructure(json)
+    model = shapeModel(layer_data)
 
-    return {'verified': is_verified}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 598f3e1b7bab5b1f39b013bde9d5bfc2dfc9fee5
+    test_acc = train(model, training_data)
 
-@app.route('/mongo')
-def ping_mongo():
-    db.insert({'name': 'Danny'})
-    return {'hi': "yup"}
-<<<<<<< HEAD
->>>>>>> Added initial mongo implementation
-=======
->>>>>>> 598f3e1b7bab5b1f39b013bde9d5bfc2dfc9fee5
+    return {'accuracy': test_acc}
+
+
+
+def restructure(json):
+    print(json)
+
+    return {
+        '1': {
+            'nodes': 512
+        },
+        '2': {
+            'nodes': 10
+        }
+    }, {
+        'optimizer': 'SGD',
+        'loss': 'sparse_categorical_crossentropy',
+        'metrics': 'accuracy',
+        'epochs': 1,
+        'batch': 64
+    }
+
+def shapeModel(data):
+    model = tf.keras.models.Sequential([])
+    model.add(tf.keras.layers.Flatten())
+
+    for key in data:
+        nodes = data[key]['nodes']
+        model.add(tf.keras.layers.Dense(nodes))
+
+    return model
+
+def train(model, attr):
+    # Training data
+    mnist = tf.keras.datasets.mnist
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    x_train = x_train / 127.5 - 1
+    x_test = x_test / 127.5 - 1
+
+    model.compile(
+        optimizer = attr['optimizer'],
+        loss = attr['loss'],
+        metrics = attr['metrics']
+    )
+
+    model.fit(x_train, y_train, 
+        batch_size = attr['batch'], 
+        epochs = attr['epochs'],
+    )
+
+    _, test_acc = model.evaluate(x_test, y_test)
+    return test_acc
