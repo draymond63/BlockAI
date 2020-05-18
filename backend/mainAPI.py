@@ -1,7 +1,11 @@
 import time
 from flask import Flask
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+app.config["MONGO_URI"] = "mongodb+srv://TheRauser:Jagwar63@blockai-qst0z.mongodb.net/test?retryWrites=true&w=majority"
+mongo = PyMongo(app)
+db = mongo.db.BlockAI
 
 @app.route('/times')
 def get_current_time():
