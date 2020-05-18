@@ -3,7 +3,9 @@ import os
 from flask import Flask, request
 from flask_pymongo import PyMongo
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 app = Flask(__name__)
 
@@ -13,20 +15,20 @@ def get_current_time():
 
 @app.route('/train', methods=['POST'])
 def compile():
-    json = request.files
-    print(json)
+    json = request.json
+    print(request.json)
+
     layer_data, training_data = restructure(json)
     model = shapeModel(layer_data)
 
-    test_acc = train(model, training_data)
+    # test_acc = train(model, training_data)
+    test_acc = 5
 
     return {'accuracy': test_acc}
 
 
 
 def restructure(json):
-    print(json)
-
     return {
         '1': {
             'nodes': 512

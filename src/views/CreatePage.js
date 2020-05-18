@@ -11,17 +11,15 @@ import '../styles/Create.css'
 export default function LoginPage() {
   const [struct] = useState(
     {
-      hi: 'Teehee'
+      hi: '1'
     }
   )
 
   const train = () => {
-    const data = new FormData();
-    data.append('data', struct);
-    
     fetch('/train', {
       method: 'POST',
-      body: data,
+      body: JSON.stringify(struct),
+      headers: new Headers({'content-type': 'application/json'}),
     })
     .then((response) => { response.json()
     .then((body) => console.log(body));
