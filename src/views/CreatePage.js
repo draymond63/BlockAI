@@ -7,10 +7,6 @@ import Board from '../components/Board'
 import Tile from '../components/Tile'
 import '../styles/Create.css'
 
-import Board from '../components/Board'
-import Tile from '../components/Tile'
-import '../styles/Create.css'
-
 export default function LoginPage() {
 
   return (
