@@ -1,29 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Grid from '@material-ui/core/Grid'
+import Tile from './Tile'
 
 export default function Board(props) {
-  const drop = e => {
-    e.preventDefault()
-    const card_id = e.dataTransfer.getData('card_id')
-    const card = document.getElementById(card_id)
-    
-    console.log(card)
+  const len_w = 5
+  const len_h = 5
+  const [grid, setGrid] = useState(
+    Array(len_w).fill().map(() => Array(len_h).fill(0))
+  )
+  const [reRender, setReRender] = useState(false)
 
-    card.style.display = 'block' // Hide original block
-    e.target.appendChild(card)
+  const push = tile => {
+    let temp = grid
+    temp[0][0] = tile
+    setGrid(temp)
   }
 
-  const dragOver = e => {
+  const drop = e => {
     e.preventDefault()
+    const tile = e.dataTransfer.getData('item')
+    push(tile)
+    setReRender(!reRender) // Tell component to rerender
+  }
+
+  const renderGrid = () => {
+    return grid.map(row => {
+      return row.map(item => {        
+        if (item) {
+          return (
+            <Tile />
+          )
+        } else {
+          return <span /> // Empty space
+        }
+    })})
   }
 
   return (
-    <div 
+    <Grid 
       id={props.id}
       onDrop={drop}
-      onDragOver={dragOver}
+      onDragOver={e => e.preventDefault()}
       className={props.className}
     >
-      { props.children }
-    </div>
+      { renderGrid() }
+    </Grid>
   )
 }

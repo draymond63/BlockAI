@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
   
 // import CTX from '../components/Store'
 // const store = React.useContext(CTX);
 import Board from '../components/Board'
-import Tile from '../components/Tile'
+import TileSelector from '../components/TileSelector'
 import '../styles/Create.css'
 
 export default function LoginPage() {
@@ -27,20 +26,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flexBox">
-      <Link to="/">Go Back</Link>
-      <Button onClick={train}>Compile</Button>
-      
-      <Board id='Board-1' className='board'>
-        <Tile id='card-1' className='tile'>1</Tile>
-        <Tile id='card-2' className='tile'>2</Tile>
-      </Board>
-
-      <Board id='Board-2' className='board'>
-        <Tile id='card-3' className='tile'>3</Tile>
-        <Tile id='card-4' className='tile'>4</Tile>
-      </Board>
-      
+    <div className="cl-main">
+      <div className="sideBar">
+        <div className="optionsBar">
+          <Button onClick={train}>Compile</Button>
+        </div>
+        <div 
+          id='Board-1' 
+          className='menu'
+          onDrop={e => e.preventDefault()}
+          onDragOver={e => e.preventDefault()}
+        >
+          <TileSelector 
+            id='tile-1'
+            type='dense'
+          />
+          <TileSelector 
+            id='tile-zzz'
+            type='dense'
+          />
+        </div>
+      </div>
+      <Board id='Board-2' className='board'/>
     </div>
   );
 }

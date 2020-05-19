@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import '../styles/Create.css'
 
-export default function Tile(props) {
+export default function TileSelector(props) {
+    const [data, setData] = useState()
+
+    if (props.type == 'dense') {
+        
+    }
+
+
+
     const dragStart = e => {
         const target = e.target       
-        e.dataTransfer.setData('card_id', target.id)
-        setTimeout(() => {
-            target.style.display = 'none'
-        }, 0)
+        
+        e.dataTransfer.setData('item', 
+            '1'
+        )
     }
 
     const dragOver = e => {
