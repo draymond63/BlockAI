@@ -1,36 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/Create.css'
 
 export default function TileSelector(props) {
-    const [data, setData] = useState()
+    const [title, setTitle] = useState(props.type)
 
-    if (props.type == 'dense') {
-        
-    }
+    // useEffect(() => {
+    //     if (props.type === 'dense') {
+    //         setTitle('Dense')
+    //     }
+    // }, [])
 
-
-
-    const dragStart = e => {
-        const target = e.target       
-        
-        e.dataTransfer.setData('item', 
-            '1'
-        )
-    }
-
-    const dragOver = e => {
-        e.stopPropagation()
+    const storeDragData = e => {
+        e.dataTransfer.setData('title', title)
     }
 
     return (
         <div
             id={props.id}
             className='tile'
-            onDragStart={dragStart}
-            onDragOver={dragOver}
+            onDragStart={storeDragData}
+            onDragOver={e => e.stopPropagation()}
             draggable='true'
         >
-            { props.children }
+            <h1>{title}</h1>
         </div>
     )
 }

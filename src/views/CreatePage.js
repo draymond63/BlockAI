@@ -32,22 +32,22 @@ export default function LoginPage() {
           <Button onClick={train}>Compile</Button>
         </div>
         <div 
-          id='Board-1' 
+          id='Menu' 
           className='menu'
           onDrop={e => e.preventDefault()}
           onDragOver={e => e.preventDefault()}
         >
           <TileSelector 
             id='tile-1'
-            type='dense'
+            type='Dense'
           />
           <TileSelector 
-            id='tile-zzz'
-            type='dense'
+            id='tile-2'
+            type='Conv'
           />
         </div>
       </div>
-      <Board id='Board-2' className='board'/>
+      <Board id='Board' className='board'/>
     </div>
   );
 }

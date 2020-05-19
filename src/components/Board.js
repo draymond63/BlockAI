@@ -1,49 +1,60 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
 import Tile from './Tile'
+import '../styles/Board.css'
 
 export default function Board(props) {
   const len_w = 5
-  const len_h = 5
+  const len_h = 10
   const [grid, setGrid] = useState(
-    Array(len_w).fill().map(() => Array(len_h).fill(0))
+    Array(len_h).fill().map(() => Array(len_w).fill(0))
   )
   const [reRender, setReRender] = useState(false)
 
-  const push = tile => {
+  const push = (title, x, y) => {
     let temp = grid
-    temp[0][0] = tile
+    console.log(x, y)
+    temp[x][y] = title
     setGrid(temp)
   }
 
   const drop = e => {
     e.preventDefault()
-    const tile = e.dataTransfer.getData('item')
-    push(tile)
+    const title = e.dataTransfer.getData('title')
+    // Get coordinates of empty space
+    let x, y;
+    x = e.target.getAttribute('x')
+    y = e.target.getAttribute('y')
+    push(title, x, y)
     setReRender(!reRender) // Tell component to rerender
   }
 
   const renderGrid = () => {
-    return grid.map(row => {
-      return row.map(item => {        
+    return grid.map((row, x) => {
+      return row.map((item, y) => {        
         if (item) {
-          return (
-            <Tile />
-          )
+          return <Tile 
+            x={x} y={y} 
+            key={y}
+            title={item} // For moving elements
+          />
         } else {
-          return <span /> // Empty space
+          return <div 
+            x={x} y={y} 
+            key={y}
+            className='filler'
+          /> // Empty space
         }
     })})
   }
 
   return (
-    <Grid 
+    <div 
       id={props.id}
       onDrop={drop}
       onDragOver={e => e.preventDefault()}
-      className={props.className}
+      className='board'
     >
       { renderGrid() }
-    </Grid>
+    </div>
   )
 }

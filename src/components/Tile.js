@@ -1,27 +1,26 @@
 import React from 'react'
 
-export default function Tile(props) {
-    const dragStart = e => {
-        const target = e.target       
-        e.dataTransfer.setData('card_id', target.id)
-        setTimeout(() => {
-            target.style.display = 'none'
-        }, 0)
-    }
-
-    const dragOver = e => {
-        e.stopPropagation()
-    }
+// XXX ADD DRAGABILITY
+export default function Tile({id, title}) {
+    console.log(title)
+    // const dragStart = e => {
+    //     e.dataTransfer.setData('item', data)
+    //     setTimeout(() => {
+    //         e.target.style.display = 'none'
+    //     }, 0)
+    // }
+    // const dragOver = e => {
+    //     e.stopPropagation()
+    // }
 
     return (
         <div
-            id={props.id}
+            id={id}
             className='tile'
-            onDragStart={dragStart}
-            onDragOver={dragOver}
-            draggable='true'
+            draggable='false'
         >
-            { props.children }
+            <h1>{title}</h1>
+            {/* Drop down menu for changes */}
         </div>
     )
 }
