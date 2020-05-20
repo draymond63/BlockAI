@@ -1,14 +1,11 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
-import CTX from '../components/Store'
 
-export default function EditColumn(props) {
-    const store = React.useContext(CTX);
-
+export default function EditColumn({struct}) {
     const train = () => {
+        console.log(struct)
         fetch('/train', {
             method: 'POST',
-            body: JSON.stringify(store.struct),
+            body: JSON.stringify(struct),
             headers: new Headers({'content-type': 'application/json'}),
         })
         .then((response) => { response.json()
@@ -18,8 +15,12 @@ export default function EditColumn(props) {
 
     return (
         <div className='EditColumn'>
-            <h1>Edits</h1>
-            <Button onClick={train}>Compile</Button>
+            <div className='EditSection'>
+                <h1>Edits</h1>
+            </div>
+            <div className='TrainSection'>
+                <button className='TaTbtn' onClick={train}>Train & Test</button>
+            </div>
         </div>
     )
 }

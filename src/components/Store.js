@@ -1,3 +1,3 @@
 import React from 'react'
-const appState = React.createContext();
-export default appState
+const structState = React.createContext();
+export default structState

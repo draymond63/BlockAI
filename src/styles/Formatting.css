@@ -22,8 +22,24 @@
     border-right: 1px solid #888C46;
 }
 .EditColumn {
-    display: flex;
+    display: grid;
+    grid-template-rows: 55% 35%;
     height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+/* SAME AS LAYERCOLUMN RN */
+.EditSection {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.TrainSection {
+    border-top: 1px solid #888C46;
+
+    height: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
