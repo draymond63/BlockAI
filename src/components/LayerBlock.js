@@ -1,17 +1,19 @@
 import React from 'react'
 
-export default function LayerBlock({text, color, type}) {
-    const changeEdits = () => {
-        console.log(type)
-    }
+export default function LayerBlock({text, type, setPage}) {
+    let color;
+    if (type === 'Input')
+        color = '#A4A4BF' 
+    else if (type === 'Dense')
+        color = '#F2EAED'
 
     return (
         <div 
             className='Layer' 
-            style={{background:  color}}
-            onClick={changeEdits}
+            style={{background: color}}
+            onClick={setPage}
         >
-            <h2>{text}</h2>
+            <h2>{text} Layer</h2>
         </div>
     )
 }

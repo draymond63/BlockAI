@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import LayerBlock from './LayerBlock'
 
-export default function ModelColumn({struct}) {    
-    const renderLayers = () => {
-        // Add input block
-        let layers = [<LayerBlock key={0} text='Input' color='#A4A4BF' type='Input'/>]
+export default function ModelColumn({struct, setPageIndex}) {    
         // Add successive layers
-        layers.push(struct.map((layer, index) => {
+    const renderLayers = () => {
+        const layers = struct.map((layer, index) => {
             return <LayerBlock 
-                key={index + 1} 
+                setPage={() => setPageIndex(index)}
+                key={index} 
                 text={layer.type} 
-                color='#F2EAED' 
                 type={layer.type}
             />
-        }))
+        })
         return layers
     }
 

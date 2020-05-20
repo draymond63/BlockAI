@@ -33,7 +33,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0% 5%;
+    align-items: left;
 }
 .TrainSection {
     border-top: 1px solid #888C46;

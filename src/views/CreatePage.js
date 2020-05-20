@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import LayerColumn from '../components/LayerColumn'
 import ModelColumn from '../components/ModelColumn'
@@ -9,20 +9,16 @@ import '../styles/Objects.css'
 
 export default function CreatePage() {
   const [struct, setStruct] = useState([{ 
-    type: 'Dense',
-    node: 10,
-    activation: 'sigmoid'
+    type: 'Input',
+    nodes: 768
   }])
-
-  const setData = data => {
-    setStruct(data)
-  }
+  const [pageIndex, setPageIndex] = useState(0)
 
   return (
     <div className="cl-main">
-      <LayerColumn struct={struct} setStruct={setData}/>
-      <ModelColumn struct={struct}/>
-      <EditColumn  struct={struct}/>
+      <LayerColumn struct={struct} setStruct={setStruct}/>
+      <ModelColumn struct={struct} setPageIndex={setPageIndex}/>
+      <EditColumn  struct={struct} setStruct={setStruct} pageIndex={pageIndex}/>
     </div>
   );
 }
