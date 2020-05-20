@@ -35,10 +35,11 @@ export default function EditColumn({struct, setStruct, pageIndex}) {
                     <input type='text' value={struct[pageIndex].nodes} onChange={e => edit(e, 'nodes')}/>
                     <h2>Activation</h2>
                     <select value={struct[pageIndex].activation} onChange={e => edit(e, 'activation')}>
-                        <option value="None">None</option>
-                        <option value="Sigmoid">Sigmoid</option>
-                        <option value="Tanh">Tanh</option>
-                        <option value="Softmax">Softmax</option>
+                        <option value="none">None</option>
+                        <option value="sigmoid">Sigmoid</option>
+                        <option value="tanh">Tanh</option>
+                        <option value="relu">Relu</option>
+                        <option value="softmax">Softmax</option>
                     </select>
                 </div>
                 }

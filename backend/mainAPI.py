@@ -11,7 +11,6 @@ def get_current_time():
 @app.route('/train', methods=['POST'])
 def compile():
     json = request.json
-    print(request.json)
 
     layer_data, training_data = restructure(json)
     model = shapeModel(layer_data)

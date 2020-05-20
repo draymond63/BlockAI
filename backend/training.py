@@ -4,14 +4,9 @@ import tensorflow as tf
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def restructure(json):
-    return {
-        '1': {
-            'nodes': 512
-        },
-        '2': {
-            'nodes': 10
-        }
-    }, {
+    print(json)
+
+    return json, {
         'optimizer': 'SGD',
         'loss': 'sparse_categorical_crossentropy',
         'metrics': 'accuracy',
@@ -20,18 +15,16 @@ def restructure(json):
     }
 
 def shapeModel(data):
-    keys = sorted(data)
     model = tf.keras.models.Sequential([])
     model.add(tf.keras.layers.Flatten())
 
-    for key in keys[:-1]:
-        nodes = data[key]['nodes']
-        model.add(tf.keras.layers.Dense(nodes))
+    for layer in data[1:]:
+        activation = layer['activation'] if layer['activation'] != 'none' else None
 
-    # Last layer needs softmax
-    nodes = data[keys[-1]]['nodes']
-    model.add(tf.keras.layers.Dense(nodes, activation='softmax'))
-
+        model.add(tf.keras.layers.Dense(
+            layer['nodes'], 
+            activation=activation
+        ))
     return model
 
 def train(model, attr):
@@ -50,7 +43,9 @@ def train(model, attr):
     model.fit(x_train, y_train, 
         batch_size = attr['batch'], 
         epochs = attr['epochs'],
+        verbose = 0
     )
+    model.summary()
 
     _, test_acc = model.evaluate(x_test, y_test)
     return test_acc
