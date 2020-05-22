@@ -5,7 +5,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def restructure(json):
     print(json)
-
     return json, {
         'optimizer': 'SGD',
         'loss': 'sparse_categorical_crossentropy',

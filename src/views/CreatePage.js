@@ -17,7 +17,7 @@ export default function CreatePage() {
   return (
     <div className="cl-main">
       <LayerColumn struct={struct} setStruct={setStruct}/>
-      <ModelColumn struct={struct} setPageIndex={setPageIndex}/>
+      <ModelColumn struct={struct} setPageIndex={setPageIndex} pageIndex={pageIndex}/>
       <EditColumn  struct={struct} setStruct={setStruct} pageIndex={pageIndex}/>
     </div>
   );

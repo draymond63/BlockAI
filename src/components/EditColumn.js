@@ -27,8 +27,8 @@ export default function EditColumn({struct, setStruct, pageIndex}) {
                 <div>
                     <h2>Input URL</h2>
                     <p>Sorry! There's no parameters as of right now :/</p>
-                </div>
-                }
+                </div>}
+
                 {struct[pageIndex].type === 'Dense' &&
                 <div>
                     <h2># of Nodes</h2>
@@ -41,11 +41,25 @@ export default function EditColumn({struct, setStruct, pageIndex}) {
                         <option value="relu">Relu</option>
                         <option value="softmax">Softmax</option>
                     </select>
-                </div>
-                }
+                </div>}
+
                 {struct[pageIndex].type === 'Conv' &&
-                    <h2>Conv</h2>
-                }
+                <div>
+                    <h2>Kernel Width & Length</h2>
+                    <input type='text' value={struct[pageIndex].width} onChange={e => edit(e, 'width')}/>
+                    <h2>Padding</h2>
+                    <input type='text' value={struct[pageIndex].padding} onChange={e => edit(e, 'padding')}/>
+                    <h2>Stride</h2>
+                    <input type='text' value={struct[pageIndex].stride} onChange={e => edit(e, 'stride')}/>
+                    <h2>Activation</h2>
+                    <select value={struct[pageIndex].activation} onChange={e => edit(e, 'activation')}>
+                        <option value="none">None</option>
+                        <option value="sigmoid">Sigmoid</option>
+                        <option value="tanh">Tanh</option>
+                        <option value="relu">Relu</option>
+                        <option value="softmax">Softmax</option>
+                    </select>
+                </div>}
             </div>
             <div className='TrainSection'>
                 <button className='TaTbtn' onClick={train}>Train & Test</button>

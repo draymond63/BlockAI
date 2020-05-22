@@ -23,7 +23,7 @@
 }
 .EditColumn {
     display: grid;
-    grid-template-rows: 55% 35%;
+    grid-template-rows: 75% 25%;
     height: 100%;
     flex-direction: column;
     align-items: center;
