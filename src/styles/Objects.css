@@ -2,16 +2,40 @@
     display: unset;
     width: 80%;
     height: 15%;
-    
-    font-family: 'Reem Kufi', sans-serif;
-    text-align: left;
-    font-size: 2em;
 
     background-color: #F2EAED;
     border: 1px solid #A4A4BF;
     border-radius: 25px;
     
+    font-size: 2.5em;
+    font-family: 'Reem Kufi', sans-serif;
+
+    padding: 2%;
+    margin-top: 0%;
     margin-bottom: 10%;
+}
+.addLayer:hover {
+    background-color: rgb(218, 211, 213);
+}
+.addLayer:active {
+    background-color: rgb(184, 177, 179);
+}
+.plus {
+    position: relative;
+    bottom: 5%;
+    left: 82%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: white;
+    border: 1px solid #2A3457;
+    color: #2A3457;
+
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
 }
 
 .Layer {
@@ -27,8 +51,8 @@
 .TaTbtn {    
     font-family: 'Reem Kufi', sans-serif;
     font-size: 2em;
-    background-color: #F991B8;
-    border: 1px solid #A4A4BF;
+    background-color: #A4A4BF;
+    border: 1px solid #2A3457;
     border-radius: 20px;
     
     margin-top: 5%;

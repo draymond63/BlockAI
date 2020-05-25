@@ -5,13 +5,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def restructure(json):
     print(json)
-    return json, {
-        'optimizer': 'SGD',
-        'loss': 'sparse_categorical_crossentropy',
-        'metrics': 'accuracy',
-        'epochs': 1,
-        'batch': 64
-    }
+    return json['struct'], json['settings']
 
 def shapeModel(data):
     model = tf.keras.models.Sequential([])

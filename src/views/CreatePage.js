@@ -12,13 +12,33 @@ export default function CreatePage() {
     type: 'Input',
     nodes: 768
   }])
+  const [settings, changeSettings] = useState({
+    optimizer: 'SGD',
+    loss: 'sparse_categorical_crossentropy',
+    metrics: 'accuracy',
+    epochs: 1,
+    batch: 64
+  })
   const [pageIndex, setPageIndex] = useState(0)
 
   return (
     <div className="cl-main">
-      <LayerColumn struct={struct} setStruct={setStruct}/>
-      <ModelColumn struct={struct} setPageIndex={setPageIndex} pageIndex={pageIndex}/>
-      <EditColumn  struct={struct} setStruct={setStruct} pageIndex={pageIndex}/>
+      <LayerColumn 
+        struct={struct} 
+        setStruct={setStruct}
+      />
+      <ModelColumn 
+        struct={struct} 
+        setPageIndex={setPageIndex} 
+        pageIndex={pageIndex}
+      />
+      <EditColumn 
+        struct={struct} 
+        setStruct={setStruct} 
+        pageIndex={pageIndex} 
+        settings={settings}
+        changeSettings={changeSettings}
+      />
     </div>
   );
 }

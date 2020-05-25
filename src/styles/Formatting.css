@@ -4,27 +4,30 @@
     width: 100%;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .LayerColumn {
     display: flex;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
 }
 .ModelColumn {
     display: flex;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
+    padding-left: 3%;
 
     border-left: 1px solid #888C46;
     border-right: 1px solid #888C46;
+    overflow-y: scroll;
 }
 .EditColumn {
     display: grid;
     grid-template-rows: 75% 25%;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
 }
@@ -43,4 +46,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* SCROLL BAR */
+::-webkit-scrollbar {
+    background: white;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(171, 223, 241);
 }
