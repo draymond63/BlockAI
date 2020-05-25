@@ -8,17 +8,15 @@ import '../styles/Defaults.css'
 import '../styles/Objects.css'
 
 export default function CreatePage() {
-  const [struct, setStruct] = useState([{ 
-    type: 'Input',
-    nodes: 768
-  }])
-  const [settings, changeSettings] = useState({
+  const [struct, setStruct] = useState([{
+    type: "Input",
     optimizer: 'SGD',
     loss: 'sparse_categorical_crossentropy',
     metrics: 'accuracy',
     epochs: 1,
-    batch: 64
-  })
+    batch: 64,
+    flatten: 1
+  }])
   const [pageIndex, setPageIndex] = useState(0)
 
   return (
@@ -36,8 +34,6 @@ export default function CreatePage() {
         struct={struct} 
         setStruct={setStruct} 
         pageIndex={pageIndex} 
-        settings={settings}
-        changeSettings={changeSettings}
       />
     </div>
   );

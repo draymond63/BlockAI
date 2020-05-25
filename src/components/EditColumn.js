@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function EditColumn({struct, setStruct, settings, changeSettings, pageIndex}) {
+export default function EditColumn({struct, setStruct, pageIndex}) {
     const train = () => {
         console.log(struct)
         fetch('/train', {
             method: 'POST',
-            body: JSON.stringify({struct, settings}), 
+            body: JSON.stringify(struct), 
             headers: new Headers({'content-type': 'application/json'}),
         })
         .then((response) => { response.json()
@@ -13,16 +13,10 @@ export default function EditColumn({struct, setStruct, settings, changeSettings,
         });
     }
 
-    const editStruct = (e, attr) => {
+    const edit = (e, attr) => {
         let temp = [...struct]
         temp[pageIndex][attr] = e.target.value
         setStruct(temp)
-    }
-    
-    const editSettings = (e, attr) => {
-        let temp = [...settings]
-        temp[attr] = e.target.value
-        changeSettings(temp)
     }
 
     return (
@@ -31,21 +25,23 @@ export default function EditColumn({struct, setStruct, settings, changeSettings,
                 <h1>Layer Parameters</h1>
                 {struct[pageIndex].type === 'Input' &&
                 <div>
-                    <select value={settings.compiler} onChange={e => editSettings(e, 'compiler')}>
-                        <option value="none">None</option>
-                        <option value="sigmoid">Sigmoid</option>
-                        <option value="tanh">Tanh</option>
-                        <option value="relu">Relu</option>
-                        <option value="softmax">Softmax</option>
+                    <h2>Optimizer</h2>
+                    <select value={struct[pageIndex].optimizer} onChange={e => edit(e, 'optimizer')}>
+                        <option value="SGD">SGD</option>
+                        <option value="adam">Adam</option>
                     </select>
+                    <h2>Epochs</h2>
+                    <input type='text' value={struct[pageIndex].epochs} onChange={e => edit(e, 'epochs')}/>
+                    <h2>Batch Size</h2>
+                    <input type='text' value={struct[pageIndex].batch} onChange={e => edit(e, 'batch')}/>
                 </div>}
 
                 {struct[pageIndex].type === 'Dense' &&
                 <div>
                     <h2># of Nodes</h2>
-                    <input type='text' value={struct[pageIndex].nodes} onChange={e => editStruct(e, 'nodes')}/>
+                    <input type='text' value={struct[pageIndex].nodes} onChange={e => edit(e, 'nodes')}/>
                     <h2>Activation</h2>
-                    <select value={struct[pageIndex].activation} onChange={e => editStruct(e, 'activation')}>
+                    <select value={struct[pageIndex].activation} onChange={e => edit(e, 'activation')}>
                         <option value="none">None</option>
                         <option value="sigmoid">Sigmoid</option>
                         <option value="tanh">Tanh</option>
@@ -57,13 +53,13 @@ export default function EditColumn({struct, setStruct, settings, changeSettings,
                 {struct[pageIndex].type === 'Conv' &&
                 <div>
                     <h2>Kernel Width & Length</h2>
-                    <input type='text' value={struct[pageIndex].width} onChange={e => editStruct(e, 'width')}/>
+                    <input type='text' value={struct[pageIndex].width} onChange={e => edit(e, 'width')}/>
                     <h2>Padding</h2>
-                    <input type='text' value={struct[pageIndex].padding} onChange={e => editStruct(e, 'padding')}/>
+                    <input type='text' value={struct[pageIndex].padding} onChange={e => edit(e, 'padding')}/>
                     <h2>Stride</h2>
-                    <input type='text' value={struct[pageIndex].stride} onChange={e => editStruct(e, 'stride')}/>
+                    <input type='text' value={struct[pageIndex].stride} onChange={e => edit(e, 'stride')}/>
                     <h2>Activation</h2>
-                    <select value={struct[pageIndex].activation} onChange={e => editStruct(e, 'activation')}>
+                    <select value={struct[pageIndex].activation} onChange={e => edit(e, 'activation')}>
                         <option value="none">None</option>
                         <option value="sigmoid">Sigmoid</option>
                         <option value="tanh">Tanh</option>
@@ -71,6 +67,11 @@ export default function EditColumn({struct, setStruct, settings, changeSettings,
                         <option value="softmax">Softmax</option>
                     </select>
                 </div>}
+                <h2>Flatten Output</h2>
+                    <select value={struct[pageIndex].flatten} onChange={e => edit(e, 'flatten')}>
+                        <option value={1}>Yes</option>
+                        <option value={0}>No</option>
+                </select>
             </div>
             <div className='TrainSection'>
                 <button className='TaTbtn' onClick={train}>Train & Test</button>

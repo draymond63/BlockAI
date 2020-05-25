@@ -16,6 +16,7 @@ export default function LayerColumn({struct, setStruct}) {
                 onClick={() => AddLayer({ // Doesn't cause rerender
                     type: 'Dense',
                     nodes: 10,
+                    flatten: 0,
                     activation: 'None'
                 })}>Dense
                 <div className="plus">+</div>
@@ -24,9 +25,10 @@ export default function LayerColumn({struct, setStruct}) {
                 className='addLayer' 
                 onClick={() => AddLayer({ // Doesn't cause rerender
                     type: 'Conv',
+                    filters: 1,
                     width: 3,
-                    padding: 0,
                     stride: 1,
+                    flatten: 0,
                     activation: 'None'
                 })}>Convolution
                 <div className="plus">+</div>
