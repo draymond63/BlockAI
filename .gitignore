@@ -10,3 +10,4 @@
 *.vscode
 
 /backend/__pycache__
+/backend/.git

@@ -19,3 +19,12 @@ h2 {
 p {
     font-family: 'Reem Kufi', sans-serif;
 }
+
+input {
+    border: 1px solid #2A3457;
+    border-radius: 10%;
+}
+
+select {
+    border: 1px solid #2A3457;
+}

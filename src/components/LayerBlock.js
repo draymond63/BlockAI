@@ -17,6 +17,7 @@ export default function LayerBlock({type, isSet, setPage}) {
             onClick={setPage}
         >
             <h2>{type} Layer</h2>
+            
         </div>
     )
 }

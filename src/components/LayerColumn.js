@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function LayerColumn({struct, setStruct}) {
+export default function LayerColumn({struct, setStruct, setPageIndex}) {
     const AddLayer = layer => {
         let temp = [...struct]
         temp.push(layer)
+        setPageIndex(struct.length) // Focus on added layer
         setStruct(temp)
     }
     

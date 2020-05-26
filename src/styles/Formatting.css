@@ -6,6 +6,13 @@
     margin: 0;
     overflow: hidden;
 }
+@media (max-width: 960px) {
+    .cl-main {
+        grid-template-columns: unset;
+        grid-template-rows: repeat(3, 1fr);
+        overflow: visible;
+    }
+}
 
 .LayerColumn {
     display: flex;

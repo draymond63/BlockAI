@@ -51,8 +51,8 @@ def train(model, settings):
     )
 
     model.fit(x_train, y_train, 
-        batch_size = settings['batch'], 
-        epochs = settings['epochs'],
+        batch_size = int(settings['batch']), 
+        epochs = int(settings['epochs']),
         verbose = 0
     )
     model.summary()

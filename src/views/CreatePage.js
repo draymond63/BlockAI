@@ -24,6 +24,7 @@ export default function CreatePage() {
       <LayerColumn 
         struct={struct} 
         setStruct={setStruct}
+        setPageIndex={setPageIndex}
       />
       <ModelColumn 
         struct={struct} 

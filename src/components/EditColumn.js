@@ -3,7 +3,7 @@ import React from 'react'
 export default function EditColumn({struct, setStruct, pageIndex}) {
     const train = () => {
         console.log(struct)
-        fetch('/train', {
+        fetch('/api/train', {
             method: 'POST',
             body: JSON.stringify(struct), 
             headers: new Headers({'content-type': 'application/json'}),
@@ -54,8 +54,6 @@ export default function EditColumn({struct, setStruct, pageIndex}) {
                 <div>
                     <h2>Kernel Width & Length</h2>
                     <input type='text' value={struct[pageIndex].width} onChange={e => edit(e, 'width')}/>
-                    <h2>Padding</h2>
-                    <input type='text' value={struct[pageIndex].padding} onChange={e => edit(e, 'padding')}/>
                     <h2>Stride</h2>
                     <input type='text' value={struct[pageIndex].stride} onChange={e => edit(e, 'stride')}/>
                     <h2>Activation</h2>
