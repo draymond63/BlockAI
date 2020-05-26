@@ -1,2 +1,2 @@
 ### Block AI
-A personal project to simplify neural network devlopment.
+A personal project to simplify neural network development.

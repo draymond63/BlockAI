@@ -11,4 +11,4 @@
 
 /backend/__pycache__
 /backend/.git
-.git.build
+/dist

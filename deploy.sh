@@ -9,6 +9,8 @@ fi
 
 # build
 npm run build
+rm -rf build/*.py
+cp -ar build/* dist
 
 # *** MAIN
 echo "Pushing Vue JS to master"
@@ -18,14 +20,12 @@ git push # Should push to master (just to display vue files)
 
 # *** GH-PAGES
 # navigate into the build output directory that is actually getting rendered
-cp -ar ./.git.build/ ./build/.git 2>/dev/null
-cd ../build
+cd dist
 
 echo "Pushing to gh-pages"
 git add .
 git commit -m "$COMMIT_NAME"
-git push # Should push to gh-pages
-# git push -f origin HEAD:gh-pages
+git push
 
 cp -ar .git/ ../.git.build 2>/dev/null
 
@@ -33,7 +33,7 @@ cp -ar .git/ ../.git.build 2>/dev/null
 cd ../backend
 git add .
 git commit -m "$COMMIT_NAME"
-git push
+git push -f origin HEAD:heroku
 
 cd -
 
