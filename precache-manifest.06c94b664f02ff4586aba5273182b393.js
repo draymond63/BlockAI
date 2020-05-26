@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a26d4d9bfb738a6ec940d4b1754d4e7c",
+    "revision": "a87a5b5a05051940755bead85002e48b",
     "url": "/BlockAI/index.html"
   },
   {
