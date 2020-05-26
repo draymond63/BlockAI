@@ -1,2 +1,0 @@
-FLASK_APP=mainAPI
-FLASK_ENV=development
